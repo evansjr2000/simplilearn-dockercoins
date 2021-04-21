@@ -1,12 +1,13 @@
 FROM ruby:alpine
 
-# The following is typically supplied by the developers
-# Install curl for testing purposes. (Not in production)
+# The following information is typically supplied by the DEV team
+# Install CURL for testing purposes (NOT IN PRODUCTION)
+RUN apk add build-base && gem install sinatra && gem install thin && apk add curl
 
-RUN apk add build-base && RUN gem install sinatra && RUN gem install thin
-# Copy the source code from the git reqpository into the docker image
+# Copy the source code from the git repo into the Docker image
 COPY . .
 
+# Metadata for the container
 ENTRYPOINT ["ruby"]
 CMD ["hasher.rb"]
 EXPOSE 8080
