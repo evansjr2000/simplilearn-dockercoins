@@ -1,12 +1,12 @@
 FROM python:alpine
 
-# The following is typically supplied by the developers
-# Install curl for testing purposes. (Not in production)
+# The following information is typically supplied by the DEV team
+# Install CURL for testing purposes (NOT IN PRODUCTION)
+RUN pip install redis && pip install requests && apk add curl
 
-RUN pip install redis && pip install requests && apk install curl
-
-# Copy the source code from the git reqpository into the docker image
+# Copy the source code from the git repo into the Docker image
 COPY . .
 
+# Metadata for the container
 ENTRYPOINT ["python"]
 CMD ["worker.py"]
