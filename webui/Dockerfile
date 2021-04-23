@@ -1,13 +1,12 @@
-FROM node:alpine
+FROM node:4-slim
 
-# The following is typically supplied by the developers
-# Install curl for testing purposes. (Not in production)
+# The following information is typically supplied by the DEV team
+RUN npm install express && npm install redis
 
-RUN npm install express && npm install redis && apk install curlj
-
-# Copy the source code from the git reqpository into the docker image
+# Copy the source code from the git repo into the Docker image
 COPY . .
 
+# Metadata for the container
 ENTRYPOINT ["node"]
 CMD ["webui.js"]
 EXPOSE 8080
